@@ -1,12 +1,24 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated>
+    <!-- HEADER -->
+    <q-header elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-toolbar-title> Mon Tableau de Bord </q-toolbar-title>
+        <q-toolbar-title> Tableau de bord </q-toolbar-title>
 
-        <q-btn flat round dense icon="logout" @click="logout" v-if="store.isAuthenticated" />
+        <!-- 🟢 Toggle Offline -->
+        <q-toggle
+          v-model="offline"
+          size="sm"
+          color="red"
+          checked-icon="cloud_off"
+          unchecked-icon="cloud_done"
+          :label="offline ? 'Offline' : 'Online'"
+          @update:model-value="toggleOffline"
+        />
       </q-toolbar>
     </q-header>
+
+    <!-- DRAWER / SIDEBAR (optionnel) -->
 
     <q-page-container>
       <router-view />
@@ -15,13 +27,13 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import { auth_store } from 'stores/auth-store'
+import { ref } from 'vue'
+import { setGlobalOffline, getGlobalOffline } from 'src/services/ws-manager'
 
-const store = auth_store()
-const router = useRouter()
+const offline = ref(getGlobalOffline())
 
-const logout = () => {
-  store.logout(router)
+function toggleOffline(val) {
+  offline.value = val // ← garder cette ligne manuelle
+  setGlobalOffline(val)
 }
 </script>

@@ -4,7 +4,7 @@ import { api } from '../services/api'
 import { jwtDecode } from 'jwt-decode'
 import { login, refreshToken, getProfile } from '../services/auth'
 
-export const auth_store = defineStore('auth', {
+export const use_auth_store = defineStore('auth_store', {
   state: () => ({
     access: null,
     refresh: null,

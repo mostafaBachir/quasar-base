@@ -10,23 +10,7 @@
 </template>
 
 <script setup>
-import { auth_store } from 'stores/auth-store'
-import { onMounted } from 'vue'
+import { use_auth_store } from 'stores/auth-store'
 
-const store = auth_store()
-onMounted(() => {
-  if (window.$ws) {
-    if (window.$ws.readyState === WebSocket.OPEN) {
-      window.$ws.send(JSON.stringify({ type: 'ping' }))
-      console.log('📤 Ping envoyé immédiatement')
-    } else {
-      window.$ws.addEventListener('open', () => {
-        console.log('✅ WebSocket ouvert, envoi du ping')
-        window.$ws.send(JSON.stringify({ type: 'ping' }))
-      })
-    }
-  } else {
-    console.error('❌ WebSocket non initialisé')
-  }
-})
+const store = use_auth_store()
 </script>

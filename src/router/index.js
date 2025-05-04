@@ -6,7 +6,7 @@ import {
   createWebHashHistory,
 } from 'vue-router'
 import routes from './routes'
-import { auth_store } from '../stores/auth-store'
+import { use_auth_store } from '../stores/auth-store'
 
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
@@ -23,7 +23,7 @@ export default route(function (/* { store, ssrContext } */) {
 
   // ⛔ Auth Guard
   Router.beforeEach(async (to, from, next) => {
-    const store = auth_store()
+    const store = use_auth_store()
 
     // Initialise l'auth (pour refresh token si besoin)
     await store.initializeAuth()
