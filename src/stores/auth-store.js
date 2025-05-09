@@ -104,7 +104,7 @@ export const use_auth_store = defineStore('auth_store', {
       }
       this.setAuthHeader()
       this.notify('Déconnexion réussie', 'info')
-      if (router) router.push('/auth/login')
+      if (router) router.push('/')
     },
 
     setAuthHeader() {

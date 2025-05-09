@@ -24,16 +24,23 @@ export default route(function (/* { store, ssrContext } */) {
   // ⛔ Auth Guard
   Router.beforeEach(async (to, from, next) => {
     const store = use_auth_store()
+    //const ui = use_ui_store()
 
     // Initialise l'auth (pour refresh token si besoin)
     await store.initializeAuth()
 
     if (to.meta.requiresAuth && !store.isAuthenticated) {
-      next({ path: '/auth/login' })
+      next('/login')
+    } else if (to.meta.requiresGuest && store.isAuthenticated) {
+      next('/dashboard')
     } else {
       next()
     }
+    console.log('avant')
   })
-
+  Router.afterEach(async () => {
+    // Initialise l'auth (pour refresh token si besoin)
+    console.log('apres')
+  })
   return Router
 })

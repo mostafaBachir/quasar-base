@@ -1,1 +1,25 @@
-// app global css in Sass form
+
+// app.sass
+@import 'quasar.variables'
+
+// Fonts
+body
+  font-family: 'Ubuntu', sans-serif
+  background: linear-gradient(135deg, #1A1B3F, #000014)
+  color: #ffffff
+  margin: 0
+  padding: 0
+
+a
+  color: #00B8FF
+  text-decoration: none
+
+a:hover
+  color: #FF00A0
+
+// Utility classes
+.bg-gradient-primary
+  background: linear-gradient(135deg, #00B8FF, #9A00FF)
+
+.text-glow
+  text-shadow: 0 0 5px #00B8FF, 0 0 10px #9A00FF

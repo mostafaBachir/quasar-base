@@ -11,3 +11,11 @@ export async function refreshToken(refresh) {
 export async function getProfile() {
   return api.get('/accounts/me/')
 }
+export async function register({ first_name, last_name, email, password }) {
+  return api.post('/accounts/register/', {
+    first_name,
+    last_name,
+    email,
+    password,
+  })
+}

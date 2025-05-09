@@ -1,25 +1,30 @@
-// Quasar Sass (& SCSS) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
 
-// Check documentation for full list of Quasar variables
+// quasar.variables.sass
 
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
+$primary   : #9A00FF
+$secondary : #5B4FFF
+$accent    : #FF00A0
 
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
+$dark      : #0D0F1A
+$light     : #F4F5FF
+$primary   : #9A00FF
+$positive  : #00E5B0
+$negative  : #FF4E88
+$info      : #5B4FFF
+$warning   : #FFA726
 
-$primary   : #1976D2
-$secondary : #26A69A
-$accent    : #9C27B0
+// Font
+$body-font-family: 'Ubuntu', sans-serif
+.glow-portal-enter-active,
+.glow-portal-leave-active
+  transition: all 1s cubic-bezier(0.25, 1, 0.5, 1)
 
-$dark      : #1D1D1D
-$dark-page : #121212
+.glow-portal-enter-from
+  opacity: 0
+  transform: scale(0.95)
+  filter: drop-shadow(0 0 10px #9A00FF) brightness(1.2)
 
-$positive  : #21BA45
-$negative  : #C10015
-$info      : #31CCEC
-$warning   : #F2C037
+.glow-portal-leave-to
+  opacity: 0
+  transform: scale(1.05)
+  filter: blur(6px) brightness(0.8)
