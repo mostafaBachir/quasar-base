@@ -23,6 +23,24 @@ const routes = [
     children: [{ path: '', component: () => import('pages/dashboard/DashboardHome.vue') }],
   },
   {
+    path: '/profile',
+    component: () => import('layouts/MainLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [{ path: '', component: () => import('pages/dashboard/ProfilePage.vue') }],
+  },
+  {
+    path: '/settings',
+    component: () => import('layouts/MainLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [{ path: '', component: () => import('pages/dashboard/SettingsPage.vue') }],
+  },
+  {
+    path: '/ocr',
+    component: () => import('layouts/MainLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [{ path: '', component: () => import('pages/dashboard/ReceiptPage.vue') }],
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },

@@ -1,7 +1,7 @@
 // src/services/api.js
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.BASE_API_URL || 'http://127.0.0.1:8000/api'
+const BASE_URL = import.meta.env.BASE_API_URL || 'http://ec2-54-234-76-178.compute-1.amazonaws.com:8001/api'
 
 const api = axios.create({
   baseURL: BASE_URL,

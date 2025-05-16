@@ -1,15 +1,45 @@
 <template>
   <q-layout view="hHh lpR fFf" class="bg-dark text-white">
     <!-- Drawer visible si connecté -->
-    <div v-show="sideBar">
-      <transition name="fade">
-        <FancyDrawer class="sidebar" :visible="auth.isAuthenticated" />
-      </transition>
-    </div>
+
+    <transition name="fade-only">
+      <FancyDrawer
+        v-show="sideBar && auth.isAuthenticated"
+        class="sidebar"
+        :visible="auth.isAuthenticated"
+      />
+    </transition>
+    <transition name="fade-only">
+      <q-drawer
+        v-model="publicDrawer"
+        side="right"
+        overlay
+        behavior="mobile"
+        class="bg-dark text-white"
+        bordered
+        :breakpoint="600"
+      >
+        <q-list padding>
+          <q-item to="/" clickable v-ripple>
+            <q-item-section>Accueil</q-item-section>
+          </q-item>
+          <q-item to="/about" clickable v-ripple>
+            <q-item-section>À propos</q-item-section>
+          </q-item>
+          <q-item to="/login" clickable v-ripple>
+            <q-item-section>Connexion</q-item-section>
+          </q-item>
+          <q-item to="/register" clickable v-ripple>
+            <q-item-section>Inscription</q-item-section>
+          </q-item>
+        </q-list>
+      </q-drawer>
+    </transition>
+
     <!-- HEADER -->
-    <transition name="fade">
+    <transition name="fade-only">
       <q-header v-show="showNavbar" class="floating-navbar">
-        <q-toolbar class="rounded-toolbar justify-between">
+        <q-toolbar :class="$q.screen.lt.md ? 'rounded-toolbar justify-center' : 'rounded-toolbar justify-between'">
           <div class="row items-center">
             <q-btn
               v-if="auth.isAuthenticated"
@@ -22,6 +52,15 @@
             />
             <q-avatar size="40px"><img src="~assets/logo.webp" /></q-avatar>
             <span class="text-h6 q-ml-sm text-glow">Inovision</span>
+            <q-btn
+              v-if="!auth.isAuthenticated && $q.screen.lt.md"
+              flat
+              round
+              dense
+              icon="menu"
+              class="q-ml-sm"
+              @click="publicDrawer = !publicDrawer"
+            />
           </div>
 
           <div class="row items-center gt-sm">
@@ -96,6 +135,7 @@ const sideBar = ref(false)
 const auth = use_auth_store()
 const ui = use_ui_store()
 const { locale } = useI18n()
+const publicDrawer = ref(false)
 
 function setLang(lang) {
   locale.value = lang
@@ -129,7 +169,7 @@ onMounted(() => {
 
 .rounded-toolbar
   border-radius: 16px
-  min-height: 64px
+  min-height: 35px
   padding: 0 8px
   width: 100%
 
@@ -169,10 +209,12 @@ onMounted(() => {
     opacity: 1
   50%
     opacity: 0.4
-
-.fade-enter-active, .fade-leave-active
+.fade-only-enter-active,
+.fade-only-leave-active
   transition: opacity 0.6s ease
-.fade-enter-from, .fade-leave-to
+
+.fade-only-enter-from,
+.fade-only-leave-to
   opacity: 0
 .sidebar
   margin-top: 23px
