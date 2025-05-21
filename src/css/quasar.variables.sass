@@ -1,20 +1,29 @@
-
-// quasar.variables.sass
-
+// === Couleurs principales ===
 $primary   : #9A00FF
 $secondary : #5B4FFF
 $accent    : #FF00A0
 
 $dark      : #0D0F1A
 $light     : #F4F5FF
-$primary   : #9A00FF
+
+// === Couleurs mode clair ===
+$background-light: #F4F5FF
+$card-light: #fff
+$text-dark: #181A24
+$border-light: #e5e7fa
+$primary-light: #8B5CF6
+$accent-light: #FF5EC6
+
+// === Couleurs messages/états ===
 $positive  : #00E5B0
 $negative  : #FF4E88
-$info      : #5B4FFF
+$info      : #11d1f0
 $warning   : #FFA726
 
-// Font
+// === Font
 $body-font-family: 'Ubuntu', sans-serif
+
+// === Animation portails (cards, etc)
 .glow-portal-enter-active,
 .glow-portal-leave-active
   transition: all 1s cubic-bezier(0.25, 1, 0.5, 1)
@@ -22,7 +31,7 @@ $body-font-family: 'Ubuntu', sans-serif
 .glow-portal-enter-from
   opacity: 0
   transform: scale(0.95)
-  filter: drop-shadow(0 0 10px #9A00FF) brightness(1.2)
+  filter: drop-shadow(0 0 10px $primary) brightness(1.2)
 
 .glow-portal-leave-to
   opacity: 0
